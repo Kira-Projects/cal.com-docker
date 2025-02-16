@@ -1,8 +1,10 @@
 name: Update Calendso
 on:
-  schedule:
-    - cron: "0 4 * * *"
-  workflow_dispatch: ~
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'calcom/**'
 
 jobs:
   sync:
