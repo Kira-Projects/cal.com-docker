@@ -1,0 +1,4 @@
+[submodule "calcom"]
+	path = calcom
+	url = https://github.com/Kira-Projects/cal.com.git
+	branch = main
