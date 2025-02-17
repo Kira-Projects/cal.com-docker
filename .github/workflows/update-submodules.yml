@@ -1,10 +1,6 @@
 name: Update Calendso
 on:
   workflow_dispatch:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - 'calcom/**'
 
 jobs:
   sync:
