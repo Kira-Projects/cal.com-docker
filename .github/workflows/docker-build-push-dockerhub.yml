@@ -4,18 +4,16 @@ name: Build and push image to DockerHub
 
 # Controls when the workflow will run
 on:
-  push:
-    branches:
-      - 'main'
-    tags:
-      - 'v*'
-  # update on run of Update Calendso nightly submodule update
   workflow_run:
     workflows: ["Update Calendso"]
     branches: [main]
     types:
       - completed
-  # Allow running workflow manually from the Actions tab
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
   workflow_dispatch:
     # Uncomment below to allow specific version workflow run
     # inputs:
