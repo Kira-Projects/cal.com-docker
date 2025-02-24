@@ -1,0 +1,26 @@
+name: Deploy to K3s
+
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch:
+    inputs:
+      RELEASE_TAG:
+        description: 'v{Major}.{Minor}.{Patch}'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_DEV_TERRAFORM }} # Add your private key to secrets
+
+      - name: Deploy to K3s
+        run: |
+          RELEASE_TAG=${{ inputs.RELEASE_TAG }}
+          SSH_COMMAND="sudo kubectl set image deployment/agx agx=leandrocode2785/cal.com:release-${TAG} -n agendix"
+          ssh ubuntu@34.58.249.68 "${SSH_COMMAND}"
