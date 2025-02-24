@@ -108,6 +108,10 @@ jobs:
 #             [worker.oci]
 #               max-parallelism = 1
 
+      - name: Create schema
+        run: |
+          docker compose exec database psql -U ${{ env.POSTGRES_USER }} -d ${{ env.POSTGRES_DB }} -c "CREATE SCHEMA IF NOT EXISTS agendix;"
+
       - name: Build image
         id: docker_build
         uses: docker/build-push-action@v5
